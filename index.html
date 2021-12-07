@@ -1,0 +1,182 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ProBuch Project</title>
+  </head>
+  <body>
+  	<script src="code/hello.js"></script>
+    <h1 style="color: white;background: blue;font-weight:bold; text-align: center">ProBuch Project</h1>
+    <h3>This is the first version of the ProBuch web application.</h3>
+    <p>It contains the basic features to test some capabilities we need. We will be using Amazon Web Services for our data storage and database queries. More info on AWS can be found
+      <a href="https://aws.amazon.com/free/?all-free-tier">here</a>.</p>
+	<h4 id="header2">Our team of Developers:</h4>
+
+<style>
+  strong {
+    font-style: italic;
+    color: blue;
+  }
+  #header {
+  background: blue;
+  font-weight:bold;
+  color: white;
+}
+</style>
+	
+	<button onclick="showHide(link);replaceButtonText('myButton1','Show','Hide');" id='myButton1'>Hide</button>
+	
+	
+	<p><img id="Team" src="img/team.jfif" width="250" hight="100"></p>
+	<h4>From left to right:</h4>
+	<p>Behzad</p>
+	<p>Reyhaneh</p>
+	<p>Sahar</p>
+	<p>Afshar</p>
+	
+	<p style="text-align: center">
+		<img id="me" src="img/dance.png" width="100" hight="70" style="position: relative">
+	</p>
+	<button id='myButton2'>Dance</button>
+	<blockquote id="quote">
+	No book can ever be finished. While working on it we learn
+  just enough to find it immature the moment we turn away
+  from it.
+	</blockquote>
+	<p> Experiments with CSS (Cascading Style Sheets)</p>
+	<style>
+  strong {
+    font-style: italic;
+    color: brown;
+  }
+  #header {
+  background: blue;
+  font-weight:bold;
+  color: white;
+}
+</style>
+<p>Now <strong>strong text</strong> is italic and brown.</p>
+<p id="header">some header styling.</p>
+	<script>
+		 let cat = document.body.getElementsByTagName("img")[1];
+		 console.log(cat);
+  let angle = Math.PI / 2;
+  function animate(time, lastTime) {
+    if (lastTime != null) {
+      angle += (time - lastTime) * 0.002;
+    }
+    cat.style.top = (Math.sin(angle) * 50) + "px";
+    cat.style.left = (Math.cos(angle) * 200) + "px";
+    requestAnimationFrame(newTime => animate(newTime, time));
+  }
+  let btn=document.getElementById("myButton2");
+  btn.innerHTML = "Dance";
+  btn.onclick=function(){requestAnimationFrame(animate)};
+  document.body.appendChild(btn);
+  //requestAnimationFrame(animate);
+		//let wf = document.getElementById("Team");
+		//console.log(wf.src);
+		//alert("hello!");
+		//let s=prompt("Enter passcode");
+		//if (s=="e") {alert("Correct")}
+		//else {alert("Error")}*/
+		
+		let link = document.body.getElementsByTagName("img")[0];
+		console.log('HI');
+		//link.parentNode.removeChild(link)
+		document.getElementById("quote").appendChild(
+    elt("footer", "—",
+        elt("strong", "Karl Popper"),
+        ", preface to the second edition of ",
+        elt("em", "The Open Society and Its Enemies"),
+        ", 1950"));
+	</script>
+
+	<button onclick="prompt('Enter passcode');">Enter Password</button>
+
+
+<p>This page turns violet when you hold the V key, blue when you hold B key and green when you hold G.</p>
+<script>
+/*  let button = document.getElementById("aOnce");
+  function once() {
+    console.log("Done.");
+	console.log(event.type);
+    //button.removeEventListener("click", once);
+  }
+  button.addEventListener("click", once);
+  button.addEventListener("mousedown", event => {
+    if (event.button == 0) {
+      console.log("Left button");
+    } else if (event.button == 1) {
+      console.log("Middle button");
+    } else if (event.button == 2) {
+      console.log("Right button");
+    }
+  });
+  */
+
+  window.addEventListener("keydown", event => {
+    if (event.key == "v") {
+      document.body.style.background = "violet";
+    }
+	else if(event.key == "b") {
+      document.body.style.background = "blue";
+    }
+	else if(event.key == "g") {
+      document.body.style.background = "green";
+    }
+  });
+  window.addEventListener("keyup", event => {
+    if (event.key == "v"||event.key == "b"||event.key == "g") {
+      document.body.style.background = "";
+    }
+  });
+
+
+</script>
+<p>Name: <input type="text" data-help="Your full name"></p>
+<p>Age: <input type="text" data-help="Your age in years"></p>
+<p id="help"></p>
+
+<script>
+  let help = document.querySelector("#help");
+  let fields = document.querySelectorAll("input");
+  for (let field of Array.from(fields)) {
+    field.addEventListener("focus", event => {
+      let text = event.target.getAttribute("data-help");
+      help.textContent = text;
+    });
+    field.addEventListener("blur", event => {
+      help.textContent = "";
+    });
+  }
+ /* document.addEventListener("beforeunload", event => {
+    console.log("You are Leaving.");
+	if (confirm('Are you sure you want to leave this page without puting these info into the database?')) {
+  // Save it!
+  console.log('Itesm were saved to the database.');
+	} else {
+  // Do nothing!
+  console.log('Items were not saved to the database.');
+}
+    event.preventDefault();
+  });*/
+  
+  const beforeUnloadListener = (event) => {
+  event.preventDefault();
+  return event.returnValue = "Are you sure you want to exit?";
+};
+
+const nameInput = document.querySelector("input");
+
+nameInput.addEventListener("input", (event) => {
+  if (event.target.value !== "") {
+    addEventListener("beforeunload", beforeUnloadListener, {capture: true});
+  } else {
+    removeEventListener("beforeunload", beforeUnloadListener, {capture: true});
+  }
+});
+
+</script>
+  </body>
+</html>
